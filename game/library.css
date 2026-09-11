@@ -1,0 +1,17 @@
+.track-list{max-height:min(286px,36vh);overflow:auto;padding-right:3px}
+.track.add-track{justify-content:center;border-style:dashed;color:#456357;background:#f8fbf9;font-weight:650}
+.track.add-track:hover{border-color:#6e8d7d;background:#f1f7f3}
+.track-badge{margin-left:auto;white-space:nowrap;border-radius:999px;padding:4px 8px;font-size:9px;background:#e5f6eb;color:#18834e}
+.track-badge.pending{background:#fff1d8;color:#9a6512}
+.library-actions{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+.library-actions p{margin:0;flex:1;min-width:220px}
+.song-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.song-form-grid label{font-size:12px;color:#455e50}
+.song-form-grid label.full{grid-column:1/-1}
+.song-form-grid input[type=text]{display:block;width:100%;margin-top:7px;padding:10px;border:1px solid #d4ded8;border-radius:5px;background:#f8faf8}
+.song-form-grid input[type=file]{display:block;width:100%;margin-top:7px;font-size:11px}
+#song-form-status{min-height:24px;margin:0 0 14px}
+#song-dialog .analysis-import{width:100%;margin-bottom:16px}
+.side-pressed{animation:side-pressed .16s ease-out}
+@keyframes side-pressed{50%{filter:brightness(1.05)}}
+@media(max-height:780px){.track-list{max-height:218px}.menu-panel h2{display:none}.intro{margin-top:4px}}

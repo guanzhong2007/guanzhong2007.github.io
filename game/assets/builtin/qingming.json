@@ -1,0 +1,2227 @@
+{
+  "version": 1,
+  "title": "我俯身看去那一帘秋雨",
+  "artist": "",
+  "bpm": 128.381,
+  "duration": 174.382,
+  "sections": [
+    {
+      "time": 0,
+      "label": "INTRO"
+    },
+    {
+      "time": 41.245,
+      "label": "SECTION A"
+    },
+    {
+      "time": 84.242,
+      "label": "SECTION B"
+    },
+    {
+      "time": 121.63,
+      "label": "CLIMAX"
+    },
+    {
+      "time": 153.411,
+      "label": "OUTRO"
+    }
+  ],
+  "notes": [
+    {
+      "id": "draft-0001",
+      "time": 0.818,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0002",
+      "time": 1.519,
+      "lane": 2,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0003",
+      "time": 1.753,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0004",
+      "time": 2.22,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0005",
+      "time": 2.454,
+      "lane": 2,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0006",
+      "time": 2.687,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0007",
+      "time": 3.155,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0008",
+      "time": 3.622,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0009",
+      "time": 3.856,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0010",
+      "time": 4.323,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0011",
+      "time": 6.193,
+      "lane": 2,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0012",
+      "time": 6.894,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0013",
+      "time": 8.062,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0014",
+      "time": 8.296,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0015",
+      "time": 9.23,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0016",
+      "time": 9.698,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0017",
+      "time": 9.932,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0018",
+      "time": 10.633,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0019",
+      "time": 11.1,
+      "lane": 2,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0020",
+      "time": 13.203,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0021",
+      "time": 13.904,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0022",
+      "time": 15.072,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0023",
+      "time": 15.306,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0024",
+      "time": 15.774,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0025",
+      "time": 16.475,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0026",
+      "time": 16.942,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0027",
+      "time": 17.877,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0028",
+      "time": 18.344,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0029",
+      "time": 19.746,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0030",
+      "time": 20.681,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0031",
+      "time": 21.616,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0032",
+      "time": 22.083,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0033",
+      "time": 22.784,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0034",
+      "time": 23.018,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0035",
+      "time": 23.485,
+      "lane": 2,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0036",
+      "time": 23.952,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0037",
+      "time": 24.42,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0038",
+      "time": 25.354,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0039",
+      "time": 25.822,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0040",
+      "time": 26.756,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0041",
+      "time": 27.224,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0042",
+      "time": 28.392,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0043",
+      "time": 29.093,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0044",
+      "time": 29.327,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0045",
+      "time": 29.794,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0046",
+      "time": 30.729,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0047",
+      "time": 31.196,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0048",
+      "time": 31.664,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0049",
+      "time": 32.131,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0050",
+      "time": 32.598,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0051",
+      "time": 34.001,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0052",
+      "time": 34.468,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0053",
+      "time": 34.935,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0054",
+      "time": 35.87,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0055",
+      "time": 36.337,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0056",
+      "time": 37.739,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0056-b",
+      "groupId": "draft-0056",
+      "time": 37.739,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0057",
+      "time": 38.207,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0058",
+      "time": 38.674,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0059",
+      "time": 39.141,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0060",
+      "time": 39.609,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0061",
+      "time": 40.076,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0062",
+      "time": 40.544,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0063-b",
+      "groupId": "draft-0063",
+      "time": 41.011,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0063",
+      "time": 41.011,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0064",
+      "time": 41.478,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0065",
+      "time": 41.946,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0066",
+      "time": 42.88,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0067",
+      "time": 43.815,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0068",
+      "time": 44.75,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0069",
+      "time": 45.451,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0070",
+      "time": 45.918,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0071",
+      "time": 46.386,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0072",
+      "time": 47.788,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0073",
+      "time": 48.722,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0074",
+      "time": 49.19,
+      "lane": 3,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0075",
+      "time": 50.124,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0076",
+      "time": 50.592,
+      "lane": 1,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0077",
+      "time": 51.059,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0078",
+      "time": 51.526,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0079",
+      "time": 51.994,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0080",
+      "time": 52.461,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0081",
+      "time": 52.929,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0082",
+      "time": 53.396,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0083",
+      "time": 53.863,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0084",
+      "time": 54.564,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0085",
+      "time": 56.2,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0086",
+      "time": 57.135,
+      "lane": 2,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0087-b",
+      "groupId": "draft-0087",
+      "time": 57.602,
+      "lane": 2,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0087",
+      "time": 57.602,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0088",
+      "time": 58.07,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0089",
+      "time": 58.537,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0090",
+      "time": 59.004,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0091",
+      "time": 59.939,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0092",
+      "time": 62.042,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0093",
+      "time": 62.509,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0094-b",
+      "groupId": "draft-0094",
+      "time": 62.977,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0094",
+      "time": 62.977,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0095",
+      "time": 63.444,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0096",
+      "time": 63.911,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0097",
+      "time": 64.379,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0098",
+      "time": 64.846,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0099",
+      "time": 66.248,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0100",
+      "time": 67.65,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0101",
+      "time": 68.118,
+      "lane": 3,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0102",
+      "time": 68.585,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0103",
+      "time": 69.052,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0104",
+      "time": 69.52,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0105",
+      "time": 69.987,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0106",
+      "time": 70.455,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0107",
+      "time": 71.389,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0108",
+      "time": 71.857,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0109",
+      "time": 72.324,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0110",
+      "time": 73.259,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0111",
+      "time": 73.726,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0112",
+      "time": 74.661,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0113",
+      "time": 75.128,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0114",
+      "time": 75.595,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0115",
+      "time": 76.063,
+      "lane": 3,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0116",
+      "time": 77.465,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0117",
+      "time": 77.699,
+      "lane": 2,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0118-b",
+      "groupId": "draft-0118",
+      "time": 78.166,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0118",
+      "time": 78.166,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0119",
+      "time": 79.101,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0120",
+      "time": 79.568,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0121",
+      "time": 80.97,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0122",
+      "time": 81.437,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0123",
+      "time": 81.905,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0124",
+      "time": 82.84,
+      "lane": 1,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0125",
+      "time": 83.307,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0125-b",
+      "groupId": "draft-0125",
+      "time": 83.307,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0126",
+      "time": 83.774,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0127",
+      "time": 84.242,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0128",
+      "time": 84.709,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0129",
+      "time": 85.644,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0130",
+      "time": 87.046,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0131",
+      "time": 87.513,
+      "lane": 1,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0132",
+      "time": 87.98,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0133",
+      "time": 88.448,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0134",
+      "time": 88.915,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0135",
+      "time": 89.383,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0136",
+      "time": 89.85,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0137",
+      "time": 90.317,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0138",
+      "time": 90.785,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0139",
+      "time": 91.486,
+      "lane": 3,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0140",
+      "time": 92.187,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0141",
+      "time": 92.42,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0142",
+      "time": 94.757,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0143",
+      "time": 95.225,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0144",
+      "time": 95.692,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0145",
+      "time": 96.159,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0146",
+      "time": 96.627,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0147",
+      "time": 97.094,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0148",
+      "time": 98.963,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0149",
+      "time": 99.431,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0150",
+      "time": 99.898,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0151",
+      "time": 100.365,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0152",
+      "time": 100.833,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0153",
+      "time": 101.3,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0154",
+      "time": 101.768,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0155",
+      "time": 102.235,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0156-b",
+      "groupId": "draft-0156",
+      "time": 102.702,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0156",
+      "time": 102.702,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0157",
+      "time": 104.104,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0158",
+      "time": 104.572,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0159",
+      "time": 105.039,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0160",
+      "time": 105.506,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0161",
+      "time": 105.974,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0162",
+      "time": 106.441,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0163-b",
+      "groupId": "draft-0163",
+      "time": 106.909,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0163",
+      "time": 106.909,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0164",
+      "time": 107.376,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0165",
+      "time": 107.843,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0166",
+      "time": 108.778,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0167",
+      "time": 109.012,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0168",
+      "time": 111.816,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0169",
+      "time": 112.283,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0170",
+      "time": 114.153,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0171",
+      "time": 114.62,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0172",
+      "time": 115.087,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0173",
+      "time": 115.555,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0174",
+      "time": 116.022,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0175",
+      "time": 117.424,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0176",
+      "time": 117.891,
+      "lane": 1,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0177",
+      "time": 118.359,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0178",
+      "time": 118.826,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0179",
+      "time": 119.294,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0180",
+      "time": 119.761,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0181",
+      "time": 120.228,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0182",
+      "time": 121.163,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0183",
+      "time": 121.63,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0184",
+      "time": 122.565,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0185",
+      "time": 123.5,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0186",
+      "time": 123.967,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0187",
+      "time": 124.434,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0187-b",
+      "groupId": "draft-0187",
+      "time": 124.434,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0188",
+      "time": 125.369,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0189",
+      "time": 126.07,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0190",
+      "time": 126.771,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0191",
+      "time": 127.005,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0192",
+      "time": 127.472,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0193",
+      "time": 128.407,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0194-b",
+      "groupId": "draft-0194",
+      "time": 128.874,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0194",
+      "time": 128.874,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0195",
+      "time": 129.809,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0196",
+      "time": 130.276,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0197",
+      "time": 130.744,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0198",
+      "time": 131.211,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0199",
+      "time": 131.679,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0200",
+      "time": 132.146,
+      "lane": 1,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0201",
+      "time": 132.613,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0202",
+      "time": 133.081,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0203",
+      "time": 134.249,
+      "lane": 1,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0204",
+      "time": 135.885,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0205",
+      "time": 136.352,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0206",
+      "time": 136.819,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0207",
+      "time": 137.287,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0208",
+      "time": 137.754,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0209",
+      "time": 138.222,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0210",
+      "time": 138.689,
+      "lane": 3,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0211",
+      "time": 139.624,
+      "lane": 2,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0212",
+      "time": 140.792,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0213",
+      "time": 141.727,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0214",
+      "time": 142.194,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0215",
+      "time": 143.129,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0216",
+      "time": 143.596,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0217",
+      "time": 144.064,
+      "lane": 1,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0218-b",
+      "groupId": "draft-0218",
+      "time": 144.531,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0218",
+      "time": 144.531,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0219",
+      "time": 144.998,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0220",
+      "time": 145.933,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0221",
+      "time": 147.802,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0222",
+      "time": 148.27,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0223",
+      "time": 148.737,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0224",
+      "time": 149.204,
+      "lane": 1,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0225",
+      "time": 149.672,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0226",
+      "time": 150.139,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0227",
+      "time": 150.607,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0228",
+      "time": 151.541,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0229",
+      "time": 152.009,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0230",
+      "time": 152.943,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0231",
+      "time": 154.345,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0232",
+      "time": 154.813,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0233",
+      "time": 155.28,
+      "lane": 4,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0234",
+      "time": 155.748,
+      "lane": 3,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0235",
+      "time": 156.215,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0236",
+      "time": 156.682,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0237",
+      "time": 158.318,
+      "lane": 3,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0238",
+      "time": 158.785,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0239",
+      "time": 159.253,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0240",
+      "time": 159.72,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0241",
+      "time": 160.655,
+      "lane": 1,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0242",
+      "time": 161.122,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0243",
+      "time": 162.057,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0244",
+      "time": 162.524,
+      "lane": 3,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0245",
+      "time": 162.992,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0246",
+      "time": 163.459,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0247",
+      "time": 163.926,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0248",
+      "time": 164.394,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0249",
+      "time": 165.328,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0250",
+      "time": 166.73,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0251",
+      "time": 167.198,
+      "lane": 3,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0252",
+      "time": 167.665,
+      "lane": 4,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0253",
+      "time": 168.133,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0254",
+      "time": 168.6,
+      "lane": 2,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.869
+    },
+    {
+      "id": "draft-0255",
+      "time": 168.834,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0256",
+      "time": 169.067,
+      "lane": 1,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0257",
+      "time": 169.301,
+      "lane": 4,
+      "direction": "down",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0258",
+      "time": 170.469,
+      "lane": 3,
+      "direction": "up",
+      "type": "hold",
+      "duration": 1.863
+    },
+    {
+      "id": "draft-0259",
+      "time": 170.937,
+      "lane": 2,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0260",
+      "time": 171.871,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    },
+    {
+      "id": "draft-0261",
+      "time": 172.105,
+      "lane": 1,
+      "direction": "up",
+      "type": "wick",
+      "duration": 0
+    }
+  ],
+  "generator": {
+    "name": "@audio/beat local draft",
+    "firstBeat": 0.117,
+    "density": 55,
+    "subdivision": 2,
+    "chordPercent": 6,
+    "holdPercent": 15,
+    "previewOffsetMs": 0
+  }
+}

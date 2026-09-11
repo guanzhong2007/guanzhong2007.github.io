@@ -1,0 +1,78 @@
+.preview-card {
+  padding: 26px 28px;
+  background: #ffffffed;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 20px 70px #1636280a;
+}
+
+.preview-time {
+  color: #284b3a;
+  font: 700 18px/1 ui-monospace, Consolas, monospace;
+}
+
+.preview-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.preview-layout canvas {
+  width: 100%;
+  height: 430px;
+  border: 1px solid #dbe4de;
+  border-radius: 8px;
+  background: #f4f8f5;
+}
+
+.preview-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.preview-controls label {
+  color: #5f7266;
+  font-size: 10px;
+}
+
+.preview-controls input {
+  display: block;
+  width: 100%;
+  margin-top: 7px;
+  padding: 9px;
+  border: 1px solid #d4dfd8;
+  border-radius: 5px;
+  background: #f8faf8;
+}
+
+.nudge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.nudge-grid button {
+  padding: 9px;
+  border: 1px solid #cedbd3;
+  border-radius: 5px;
+  background: #fff;
+  color: #355445;
+}
+
+.preview-controls p {
+  margin: 2px 0;
+  color: #728077;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.preview-controls .calibrating {
+  border-color: #e9b64c;
+  background: #fff7e3;
+}
+
+@media (max-width: 980px) {
+  .preview-layout { grid-template-columns: 1fr; }
+}

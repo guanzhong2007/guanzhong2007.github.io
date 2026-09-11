@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f7f9f8"><title>K-LINE RHYTHM · K 线节奏</title><link rel="icon" href="data:,"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="library.css"><link rel="stylesheet" href="portfolio.css"></head>
+<body>
+<header class="hud">
+ <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><div><strong>K-LINE RHYTHM</strong><small>K 线节奏 · 交易世界</small></div></div>
+ <div class="song"><div class="cover" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><div class="song-copy"><h1 id="song-title">开盘 · Opening Bell</h1><p id="song-artist">K-LINE 原创合成练习曲</p><div class="song-meta"><span class="tag">NORMAL</span><span>Lv. 3</span><span id="mode-label">练习曲</span></div></div></div>
+ <div class="metrics"><div><span>COMBO</span><b id="combo">0</b></div><div><span>SCORE</span><b id="score">000,000</b></div><div><span>ACC</span><b id="accuracy">100.0<small>%</small></b></div><div><span>BPM</span><b id="bpm-display">120</b></div></div>
+ <button class="icon-button" id="pause" aria-label="暂停游戏" disabled>Ⅱ</button>
+</header>
+<div class="progress"><div id="progress-fill"></div></div>
+<main id="stage"><canvas id="game" aria-label="四轨 K 线节奏游戏。红线向上使用轨道键加 S，绿线向下使用轨道键加 B，实体柱长按轨道键。"></canvas><div id="countdown" hidden></div></main>
+<footer><span><i class="live-dot"></i><span id="section">MARKET READY</span></span><span id="footer-help">影线：轨道键 + S / B　 ·　 实体：长按轨道键</span><span><span id="time">00:00 / 00:46</span><span class="divider">/</span><span id="fps">60 FPS</span></span></footer>
+<div class="overlay" id="menu">
+ <section class="panel menu-panel" aria-labelledby="menu-title">
+  <div class="eyebrow"><span class="live-dot"></span>K-LINE RHYTHM <span class="version">DEMO 01</span></div>
+  <h2 id="menu-title">让每一笔，<br>落在节拍上<span class="red">。</span></h2>
+  <p class="intro">从中央出发，跟随红涨绿跌。</p>
+  <div class="track-list" role="group" aria-label="选择曲目">
+   <button class="track active" id="practice-track"><span class="track-number">02</span><span><strong>开盘 · Opening Bell</strong><small>原创练习曲 · 46 秒 @ 120 BPM · 即刻可玩</small></span><span class="track-arrow">↗</span></button>
+   <button class="track" id="custom-track" hidden><span class="track-number">01</span><span><strong>导入自己的曲目</strong><small>导入自己的音频与 JSON 谱面</small></span><span class="track-arrow">↗</span></button>
+   <button class="track add-track" id="add-track" type="button"><span>＋ 添加自定义曲目</span></button>
+  </div>
+  <div id="custom-options" hidden><div class="import-row" id="legacy-import-row"><label class="file-button">导入音频<input id="audio-file" type="file" accept="audio/*"></label><label class="file-button">导入 JSON 谱面<input id="chart-file" type="file" accept=".json,application/json"></label><button id="load-local" class="subtle">读取项目内固定音频</button></div><p id="import-status">需要音频和配套谱面。导入后会自动保存，下次打开自动恢复。</p><div class="library-actions" id="library-actions" hidden><button id="edit-track" class="subtle" type="button">编辑 / 补充文件</button><a id="analyze-track" href="analyze.html">去分析页制谱</a></div></div>
+  <div class="quick-guide"><span><kbd id="lane-keys-hint">1 / 2 / 3 / 4</kbd> 选择轨道</span><span><kbd id="sell-key-hint">S</kbd> 上方卖出</span><span><kbd id="buy-key-hint">B</kbd> 下方买入</span></div>
+  <div class="actions"><button id="start" class="primary">开始交易 <span>↗</span></button><button id="demo" class="secondary">观看演示</button></div>
+  <div class="menu-bottom"><button id="keys-open">轨道按键</button><button id="settings-open">参数 / 校准</button><button id="help-open">操作说明</button><a href="analyze.html">本地分析谱面</a><span>音乐在浏览器内播放</span></div>
+ </section>
+</div>
+<dialog id="keys-dialog" aria-labelledby="keys-title">
+ <div class="dialog-heading"><div><span class="eyebrow">LANE KEYS</span><h2 id="keys-title">轨道按键</h2></div><button id="keys-close" class="close" aria-label="关闭按键设置">×</button></div>
+ <p>轨道键、上方操作键、下方操作键都可以改。画面上的判定线标识始终显示 <b>S</b> 和 <b>B</b>，按下对应操作键时判定线会发亮。</p>
+ <div class="key-bindings"><label>轨道 1<button type="button" data-bind-key="lane1">1</button></label><label>轨道 2<button type="button" data-bind-key="lane2">2</button></label><label>轨道 3<button type="button" data-bind-key="lane3">3</button></label><label>轨道 4<button type="button" data-bind-key="lane4">4</button></label></div>
+ <div class="side-bindings"><label><b>S</b> 线上操作<button type="button" data-bind-key="sell">S</button></label><label><b>B</b> 线下操作<button type="button" data-bind-key="buy">B</button></label></div>
+ <p id="keys-status" role="status">点击任意操作键后录入新键。</p>
+ <div id="key-test" tabindex="0" role="group" aria-label="按键测试区，点击后同时按下多个按键"><span id="key-test-state">点击此处，同时按下要测试的按键</span><div class="test-keys"><kbd data-test-key="1">1</kbd><kbd data-test-key="2">2</kbd><kbd data-test-key="3">3</kbd><kbd data-test-key="4">4</kbd><kbd data-test-key="s">S</kbd><kbd data-test-key="b">B</kbd></div></div>
+ <p class="key-note">亮起表示收到按键。六个操作键不能重复；空格、Esc、Ctrl、Alt 保留给系统和暂停。换键后，线上的字样仍是 S，线下的字样仍是 B。</p>
+ <div class="actions"><button id="keys-save" class="primary">保存按键</button><button id="keys-reset" class="secondary">恢复默认</button></div>
+</dialog>
+<dialog id="song-dialog" aria-labelledby="song-dialog-title"><form id="song-form">
+ <div class="dialog-heading"><div><span class="eyebrow">LOCAL SONG LIBRARY</span><h2 id="song-dialog-title">添加自定义曲目</h2></div><button type="button" class="close" data-close="song-dialog" aria-label="关闭">×</button></div>
+ <p>音频和谱面会保存在当前浏览器。可以先只存音频，曲目会标记为“待制谱”；以后再编辑并补上 JSON。</p>
+ <button type="button" id="import-analysis-project" class="secondary analysis-import">导入分析页已保存的工程</button>
+ <div class="song-form-grid"><label>曲名<input id="song-title-input" type="text" maxlength="80" placeholder="默认使用音频文件名"></label><label>作者<input id="song-artist-input" type="text" maxlength="80" placeholder="可留空"></label><label class="full">音频（新曲目必选）<input id="song-audio-input" type="file" accept="audio/*,.m4a"></label><label class="full">JSON 谱面（可以稍后补）<input id="song-chart-input" type="file" accept=".json,application/json"></label></div>
+ <p id="song-form-status" role="status">请选择文件，或导入分析页已经保存的工程。</p>
+ <div class="actions"><button class="primary" type="submit">保存到曲库 <span>＋</span></button><button class="secondary" type="button" data-close="song-dialog">取消</button></div>
+</form></dialog>
+<dialog id="settings-dialog"><form id="settings-form"><div class="dialog-heading"><div><span class="eyebrow">PREFERENCES</span><h2>节奏设置</h2></div><button type="button" class="close" data-close="settings-dialog" aria-label="关闭设置">×</button></div>
+ <div class="settings-grid"><label>BPM<input name="bpm" type="number" min="30" max="300" step="1" required><small>练习曲同步变速；外部秒制谱只修改显示值。</small></label><label>音符提前出现<select name="approach"><option value="2.5">2.5 秒 · 舒缓</option><option value="2">2.0 秒 · 标准</option><option value="1.5">1.5 秒 · 快速</option><option value="1">1.0 秒 · 极速</option></select><small>不改变音符击打时间。</small></label><label>Music Offset / ms<input name="musicOffset" type="number" min="-10000" max="10000" required><small>正值让音频晚开始。</small></label><label>谱面 Offset / ms<input name="chartOffset" type="number" min="-10000" max="10000" required><small>正值让所有音符晚到达。</small></label><label>Audio Offset / ms<input name="audioOffset" type="number" min="-300" max="300" required><small>正值补偿听到声音后偏晚的输入。</small></label><label>音量<input name="volume" type="range" min="0" max="1" step="0.01"></label></div>
+ <div class="calibration"><button type="button" id="calibrate">开始节拍校准</button><span id="calibration-status">跟随 12 次滴声按 F，舍弃前两拍。</span><button type="button" id="apply-calibration" hidden>应用建议</button></div>
+ <button class="primary" type="submit">保存设置</button>
+ </form></dialog>
+<dialog id="help-dialog"><div class="dialog-heading"><h2>一分钟上手</h2><button class="close" data-close="help-dialog" aria-label="关闭说明">×</button></div><ol class="help-list"><li><b>看前端，不看尾巴。</b> 红色横杠碰到上方 S 线时，按对应轨道键 + S；绿色横杠碰到下方 B 线时，按轨道键 + B。</li><li><b>S/B 可以先按住。</b> 保持 S 或 B，再跟着短线逐次点轨道键；也可以先按轨道再按 S/B。双押可一起按 <span id="chord-example">1 + 4 + S</span>。</li><li><b>实体柱就是长按。</b> 柱头到线时按住轨道键，柱尾到线时松开。上行和下行都不需要 S/B。</li><li><b>空格或 Esc 暂停。</b> 切换窗口会自动暂停；继续时倒数 3 秒，有长按时请在倒数内重新按住。</li></ol><p class="muted">PERFECT ±35ms · GREAT ±70ms · GOOD ±110ms<br>超过 110ms 的有效击打记 MISS。松开判定略宽松。</p><button class="primary" data-close="help-dialog">明白了</button></dialog>
+<dialog id="pause-dialog"><div class="eyebrow">TRADING HALTED</div><h2>休市片刻</h2><p>继续时倒数 3 秒。若有未结束的长按，请重新按住对应轨道键。</p><div class="actions"><button id="resume" class="primary">继续</button><button id="quit" class="secondary">回到选曲</button></div></dialog>
+<dialog id="result-dialog"><div class="eyebrow" id="result-mode">SESSION CLOSED</div><h2>本场收盘</h2><div class="result-main"><strong id="result-grade">S</strong><div><b id="result-score">1,000,000</b><span id="result-acc">100% ACC</span></div></div><div id="result-counts" class="result-counts"></div><p id="result-combo"></p><div class="actions"><button id="retry" class="primary">再来一局</button><button id="result-back" class="secondary">回到选曲</button></div></dialog>
+<div id="toast" role="status" hidden></div>
+<script type="module" src="src/main.js"></script></body></html>
+

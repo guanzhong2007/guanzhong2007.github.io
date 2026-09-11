@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="theme-color" content="#f4f7f3">
+ <title>K-LINE RHYTHM · 本地谱面分析</title>
+ <link rel="icon" href="data:,">
+ <link rel="stylesheet" href="analyze.css">
+ <link rel="stylesheet" href="preview.css">
+ <script type="importmap">
+ {
+  "imports": {
+   "@audio/beat": "./node_modules/@audio/beat/index.js",
+   "@audio/beat-detect": "./node_modules/@audio/beat-detect/detect.js",
+   "@audio/beat-onset": "./node_modules/@audio/beat-onset/index.js",
+   "@audio/beat-onset/energy": "./node_modules/@audio/beat-onset/energy.js",
+   "@audio/beat-onset/phase": "./node_modules/@audio/beat-onset/phase.js",
+   "@audio/beat-onset/band": "./node_modules/@audio/beat-onset/band.js",
+   "@audio/beat-tempo": "./node_modules/@audio/beat-tempo/index.js",
+   "@audio/beat-tempo/comb": "./node_modules/@audio/beat-tempo/comb.js",
+   "@audio/beat-track": "./node_modules/@audio/beat-track/track.js",
+   "@audio/onset": "./node_modules/@audio/onset/index.js",
+   "fourier-transform": "./node_modules/fourier-transform/index.js",
+   "window-function": "./node_modules/window-function/index.js"
+  }
+ }
+ </script>
+</head>
+<body>
+ <header class="tool-header">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span><b>K-LINE RHYTHM</b><small>LOCAL CHART LAB</small></span></a>
+  <div><strong>本地谱面分析</strong><span>音频只在当前浏览器中处理</span></div>
+  <a class="back" href="index.html">返回游戏</a>
+ </header>
+ <main>
+  <section class="intro-card">
+   <div><span class="eyebrow">AUDIO INPUT</span><h1>让算法找拍，<br>你来决定怎么玩。</h1><p>选择 <b>“我俯身看去那一帘秋雨” [BV16bby6AEJG].m4a</b>。分析会突出低频鼓点和高频打击乐、降低人声中频影响，再生成四轨 K 线草稿。</p></div>
+   <div class="load-box">
+    <label class="file-pick"><span>选择本地音频</span><input id="audio-file" type="file" accept="audio/*,.m4a"></label>
+    <div id="file-summary">尚未选择文件</div>
+    <button id="analyze" class="primary" disabled>开始本地分析 <span>↗</span></button>
+    <p id="analysis-status" role="status">不会上传或复制歌曲文件。</p>
+   </div>
+  </section>
+
+  <section id="workspace" hidden>
+   <audio id="audio" controls preload="metadata"></audio>
+   <div class="metric-grid">
+    <div><span>时长</span><b id="metric-duration">--</b></div>
+    <div><span>候选 BPM</span><b id="metric-bpm">--</b></div>
+    <div><span>首拍</span><b id="metric-first">--</b></div>
+    <div><span>起音</span><b id="metric-onsets">--</b></div>
+    <div><span>K 线</span><b id="metric-notes">--</b></div>
+   </div>
+
+   <section class="preview-card">
+    <div class="section-heading"><div><span class="eyebrow">PLAYABLE PREVIEW</span><h2>边听边看游戏画面</h2></div><span id="preview-time" class="preview-time">00:00.000</span></div>
+    <div class="preview-layout">
+     <canvas id="game-preview" aria-label="四轨 K 线游戏预览"></canvas>
+     <div class="preview-controls">
+      <button id="preview-play" class="primary">播放预览 <span>▶</span></button>
+      <button id="preview-restart" class="secondary wide">从第一根柱前开始</button>
+      <label>谱面整体延迟 / ms<input id="preview-offset" type="number" min="-2000" max="2000" step="10" value="0"></label>
+      <div class="nudge-grid"><button data-nudge="-50">提前 50</button><button data-nudge="-10">提前 10</button><button data-nudge="10">延后 10</button><button data-nudge="50">延后 50</button></div>
+      <button id="auto-align" class="secondary wide">一键重新对齐检测鼓点</button>
+      <button id="tap-calibrate" class="secondary wide">跟着鼓点敲 4 次自动校准</button>
+      <p id="tap-status">播放歌曲后点击上方按钮，再跟着清楚的鼓点按 4 次空格。导出时会把这里的延迟直接写入谱面时间。</p>
+     </div>
+    </div>
+   </section>
+
+   <section class="timeline-card">
+    <div class="section-heading"><div><span class="eyebrow">OVERVIEW</span><h2>波形、节拍与草稿</h2></div><span class="legend"><i class="beat"></i>节拍 <i class="onset"></i>起音 <i class="up"></i>红涨 <i class="down"></i>绿跌</span></div>
+    <canvas id="timeline" aria-label="歌曲波形、节拍、起音和生成音符总览"></canvas>
+    <p>点击时间轴可跳转播放位置。灰线是检测到的起音，较高的线表示更强；红绿标记是当前草稿。</p>
+   </section>
+
+   <div class="work-grid">
+    <section class="control-card">
+     <div class="section-heading"><div><span class="eyebrow">DRAFT RULES</span><h2>人工调节</h2></div><button id="regenerate" class="secondary">按参数重生成</button></div>
+     <div id="tempo-candidates" class="tempo-candidates" aria-label="候选 BPM"></div>
+     <div class="control-grid">
+      <label>谱面标题<input id="title" type="text" maxlength="80"></label>
+      <label>作者<input id="artist" type="text" maxlength="80" placeholder="可留空"></label>
+      <label>BPM<input id="bpm" type="number" min="30" max="300" step="0.1"></label>
+      <label>首拍位置 / 秒<input id="first-beat" type="number" min="0" step="0.001"></label>
+      <label>节拍细分<select id="subdivision"><option value="1">每拍 1 格</option><option value="2" selected>每拍 2 格</option><option value="4">每拍 4 格</option></select></label>
+      <label>谱面密度 <output id="density-output">55</output><input id="density" type="range" min="10" max="100" value="55"></label>
+      <label>双押比例 <output id="chord-output">6%</output><input id="chord" type="range" min="0" max="25" value="6"></label>
+      <label>长按比例 <output id="hold-output">15%</output><input id="hold" type="range" min="0" max="40" value="15"></label>
+     </div>
+     <p class="note">BPM 与首拍决定网格；密度决定保留多少强起音。长按会优先放到持续音明显的位置，长度约 1.5～4 拍；红绿方向参考局部能量升降，轨道使用固定模式，不使用随机数。</p>
+    </section>
+
+    <section class="export-card">
+     <span class="eyebrow">EXPORT</span><h2>保存结果</h2>
+     <p>草稿 JSON 可直接在游戏 Track 01 中导入。分析 JSON 会保留候选 BPM、节拍和起音，方便以后重新生成。</p>
+     <button id="download-chart" class="primary">下载草稿谱面 <span>↓</span></button>
+     <button id="download-analysis" class="secondary wide">下载分析数据</button>
+     <button id="save-project" class="secondary wide" disabled>保存当前工程到浏览器</button>
+     <button id="save-library" class="secondary wide" disabled>保存工程并加入游戏曲库</button>
+     <button id="restore-project" class="secondary wide" disabled>恢复上次保存</button>
+     <p id="save-status">尚未保存本地工程。</p>
+     <a class="open-game" href="index.html">打开游戏曲库</a>
+    </section>
+   </div>
+
+   <section class="editor-card">
+    <div class="section-heading"><div><span class="eyebrow">NOTE EDITOR</span><h2>逐条修正</h2></div><button id="add-note" class="secondary">在播放位置添加</button></div>
+    <p>点击“定位”试听该处；修改时间、轨道、方向、类型或长按时长后，导出的就是当前表格内容。</p>
+    <div class="table-wrap"><table><thead><tr><th>#</th><th>时间 / 秒</th><th>轨道</th><th>方向</th><th>类型</th><th>时长</th><th></th></tr></thead><tbody id="note-rows"></tbody></table></div>
+   </section>
+  </section>
+ </main>
+ <div id="toast" role="status" hidden></div>
+ <script type="module" src="src/analyze.js"></script>
+</body>
+</html>
