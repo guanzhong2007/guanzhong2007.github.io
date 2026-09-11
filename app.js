@@ -1,7 +1,7 @@
 import {chartState} from './chart-model.js';
 const accounts={github:'https://github.com/guanzhong2007',google:'mailto:li06314qq@gmail.com'};
 const pages=[...document.querySelectorAll('.page')],names=['about','works','game','rift'];
-const frame=document.querySelector('#game-frame'),riftFrame=document.querySelector('#rift-frame');let current=0,lastFlip=0,touchY=null,toastTimer,gameCanNavigate=false;
+const frame=document.querySelector('#game-frame'),riftFrame=document.querySelector('#rift-frame');let current=0,lastFlip=0,touchY=null,toastTimer,gameCanNavigate=true;
 function notice(text){const el=document.querySelector('#notice');el.textContent=text;el.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.hidden=true,4000);}
 function showPage(){const found=names.indexOf(location.hash.slice(1)),index=found<0?0:found;
  if(current===2&&index!==2)frame.contentWindow?.postMessage({type:'portfolio-pause'},location.origin);
