@@ -7,13 +7,21 @@ import {ChartManager,validateChart} from './ChartManager.js';
 import {AudioManager} from './AudioManager.js';
 import {JudgeManager} from './JudgeManager.js';
 import {InputManager,ComboInput} from './InputManager.js';
+import {TouchInput} from './TouchInput.js';
 import {Renderer} from './Renderer.js';
 import {LEGACY_ID,bakeChartOffset,createSong,getSong,listSongs,putSong,readLastAnalysisProject} from './SongLibrary.js';
 const $=id=>document.getElementById(id),settings=new Settings(),charts=new ChartManager(),audio=new AudioManager(),renderer=new Renderer($('game'));
 let baseChart,customChart,customBuffer,customBlob,customFileInfo,customName='',librarySongs=[],selectedLibrarySong=null,selectedLibraryBuffer=null,editingSongId=null,selection='practice',mode='menu',judge=null,comboInput=null,currentChart=null,buffer=null,auto=false,resuming=false,resumeAt=0,toastTimer,calibration=null,calibrationSuggestion=0,loadVersion=0,selectionVersion=0;
-const input=new InputManager({getBindings:()=>settings.value,isActive:()=>['playing','countdown'].includes(mode),canPause:()=>['playing','countdown','paused'].includes(mode),onDown:key=>{if(mode==='playing'&&!auto)comboInput.down(key);},onUp:key=>{if(mode==='playing'&&!auto)comboInput.up(key);},onPause:()=>{if(mode==='playing'||mode==='countdown')pause();else if(mode==='paused')resume();}});
+const input=new InputManager({getBindings:()=>settings.value,isActive:()=>['playing','countdown'].includes(mode),canPause:()=>['playing','countdown','paused'].includes(mode),onDown:key=>{if(mode==='playing'&&!auto)comboInput.down(key);},onUp:key=>{if(mode==='playing'&&!auto){if(touch.held.has(key))comboInput.held.delete(key);else comboInput.up(key);}},onPause:()=>{if(mode==='playing'||mode==='countdown')pause();else if(mode==='paused')resume();}});
+const touch=new TouchInput({isActive:()=>!auto&&['playing','countdown'].includes(mode),onDown:(lane,direction,first)=>{if(mode!=='playing')return;if(first&&!input.held.has(String(lane)))judge.press(lane,clock());judge.wick(lane,direction,clock());},onUp:lane=>{if(mode==='playing'&&!input.held.has(String(lane)))judge.release(lane,clock());},onCancel:()=>pause()});
+for(const direction of ['up','down'])for(let lane=1;lane<=4;lane++){const button=document.createElement('button');button.type='button';button.dataset.touchLane=lane;button.dataset.direction=direction;button.setAttribute('aria-label',`轨道 ${lane} ${direction==='up'?'上方红色':'下方绿色'}触控区，实体柱按住`);button.tabIndex=-1;button.innerHTML=`<span>${direction==='up'?'↑':'↓'} ${lane}</span>`;$('touch-controls').append(button);}
+touch.attach($('touch-controls'));
+function clearInputs(){input.clear();touch.clear();touch.paint();}
+const touchMedia=matchMedia('(pointer: coarse), (max-width: 700px)');
+function updateTouchMode(){document.body.classList.toggle('touch-mode',touchMedia.matches);if(['playing','countdown'].includes(mode))pause();}
+touchMedia.addEventListener('change',updateTouchMode);updateTouchMode();
 function refreshKeyLabels(){const labels=settings.value.laneKeys.map(keyLabel),sell=keyLabel(settings.value.sellKey),buy=keyLabel(settings.value.buyKey);$('lane-keys-hint').textContent=labels.join(' / ');$('sell-key-hint').textContent=sell;$('buy-key-hint').textContent=buy;$('chord-example').textContent=`${labels[0]} + ${labels[3]} + ${sell}`;$('game').setAttribute('aria-label',`四轨 K 线节奏游戏，轨道键 ${labels.join('、')}。上方 S（${sell}），下方 B（${buy}），实体柱长按轨道键。`);const helpItems=$('help-dialog').querySelectorAll('.help-list li');if(helpItems[0])helpItems[0].innerHTML=`<b>看前端，不看尾巴。</b> 红色横杠碰到上方 S 线时，按对应轨道键 + 线上操作键（${sell}）；绿色横杠碰到下方 B 线时，按轨道键 + 线下操作键（${buy}）。画面仍分别显示 S / B。`;if(helpItems[2])helpItems[2].innerHTML='<b>实体柱就是长按。</b> 柱头到判定线时按住轨道键，柱尾到线时松开。上行和下行都不需要线上或线下操作键。';}
-new KeyBindingEditor({settings,onSave:()=>{input.clear();refreshKeyLabels();notify('轨道键与 S/B 操作键已保存；判定线标识仍为 S / B');}});
+new KeyBindingEditor({settings,onSave:()=>{clearInputs();refreshKeyLabels();notify('轨道键与 S/B 操作键已保存；判定线标识仍为 S / B');}});
 refreshKeyLabels();
 function notify(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,5000);}
 function clock(){return audio.time-(settings.value.chartOffset+settings.value.audioOffset)/1000;}
@@ -73,23 +81,24 @@ async function start(demo=false){
   const lastHit=Math.max(...currentChart.notes.map(n=>n.time+n.duration))+(settings.value.chartOffset-settings.value.musicOffset)/1000;
   if(selection!=='practice'&&lastHit>buffer.duration+0.16)throw Error('谱面结束时间超过音频长度，请检查配套谱面与 Offset。');
   judge=new JudgeManager(currentChart.notes,f=>{renderer.hit(f);if(judge.stats.combo&&judge.stats.combo%50===0){$('combo').classList.remove('pulse');void $('combo').offsetWidth;$('combo').classList.add('pulse');}});
-  comboInput=new ComboInput(judge,clock);input.clear();renderer.feedback=[];mode='countdown';resuming=false;
+  comboInput=new ComboInput(judge,clock);clearInputs();renderer.feedback=[];mode='countdown';resuming=false;
   audio.play(buffer,0,3,settings.value.musicOffset);$('menu').hidden=true;$('pause').disabled=false;$('mode-label').textContent=auto?'AUTO · 演示不计纪录':selection==='practice'?'练习曲':'本地曲目';
  }catch(e){notify(`无法开始：${e.message}`);mode='menu';}finally{$('start').innerHTML='开始交易 <span>↗</span>';updateAvailability();}
 }
-function pause(){if(!['playing','countdown'].includes(mode))return;audio.pause();mode='paused';$('countdown').hidden=true;input.clear();comboInput.clear();$('pause-dialog').showModal();}
+function pause(){if(!['playing','countdown'].includes(mode))return;audio.pause();mode='paused';$('countdown').hidden=true;clearInputs();comboInput.clear();$('pause-dialog').showModal();}
 async function resume(){
- if(mode!=='paused')return;try{await audio.init();$('pause-dialog').close();resumeAt=audio.position;audio.play(buffer,resumeAt,3,settings.value.musicOffset);mode='countdown';resuming=true;input.clear();comboInput.clear();}catch(e){notify(e.message);}
+ if(mode!=='paused')return;try{await audio.init();$('pause-dialog').close();resumeAt=audio.position;audio.play(buffer,resumeAt,3,settings.value.musicOffset);mode='countdown';resuming=true;clearInputs();comboInput.clear();}catch(e){notify(e.message);}
 }
-function back(){++loadVersion;audio.stop();mode='menu';input.clear();comboInput?.clear();judge=null;renderer.feedback=[];$('menu').hidden=false;$('pause').disabled=true;$('countdown').hidden=true;for(const id of ['pause-dialog','result-dialog'])$(id).close();setSong();}
-function finish(){audio.stop();mode='result';input.clear();comboInput.clear();$('pause').disabled=true;const s=judge.stats;$('result-mode').textContent=auto?'AUTO DEMO · 演示成绩':'SESSION CLOSED · 练习成绩';$('result-grade').textContent=s.accuracy>=98?'S':s.accuracy>=90?'A':s.accuracy>=80?'B':s.accuracy>=60?'C':'D';$('result-score').textContent=s.score.toLocaleString('en-US');$('result-acc').textContent=`${s.accuracy.toFixed(2)}% ACC`;$('result-counts').replaceChildren(...Object.entries(s.counts).map(([grade,count])=>{const span=document.createElement('span');span.textContent=grade;const b=document.createElement('b');b.textContent=count;span.append(b);return span;}));$('result-combo').textContent=`最大连击 ${s.maxCombo} · ${s.judged} / ${s.total} 次判定 · ${currentChart.notes.length} 根 K 线`;$('result-dialog').showModal();}
+function back(){++loadVersion;audio.stop();mode='menu';clearInputs();comboInput?.clear();judge=null;renderer.feedback=[];$('menu').hidden=false;$('pause').disabled=true;$('countdown').hidden=true;for(const id of ['pause-dialog','result-dialog'])$(id).close();setSong();}
+function finish(){audio.stop();mode='result';clearInputs();comboInput.clear();$('pause').disabled=true;const s=judge.stats;$('result-mode').textContent=auto?'AUTO DEMO · 演示成绩':'SESSION CLOSED · 练习成绩';$('result-grade').textContent=s.accuracy>=98?'S':s.accuracy>=90?'A':s.accuracy>=80?'B':s.accuracy>=60?'C':'D';$('result-score').textContent=s.score.toLocaleString('en-US');$('result-acc').textContent=`${s.accuracy.toFixed(2)}% ACC`;$('result-counts').replaceChildren(...Object.entries(s.counts).map(([grade,count])=>{const span=document.createElement('span');span.textContent=grade;const b=document.createElement('b');b.textContent=count;span.append(b);return span;}));$('result-combo').textContent=`最大连击 ${s.maxCombo} · ${s.judged} / ${s.total} 次判定 · ${currentChart.notes.length} 根 K 线`;$('result-dialog').showModal();}
 function frame(){
+ document.body.dataset.playState=mode;$('touch-controls').hidden=auto||!['playing','countdown'].includes(mode);
  let t=judge?(mode==='countdown'&&resuming?resumeAt-(settings.value.chartOffset+settings.value.audioOffset)/1000:clock()):0;
  if(mode==='countdown'){
   const left=(resuming?resumeAt:0)-audio.time;
   $('countdown').hidden=false;$('countdown').textContent=left>0?Math.ceil(left):'GO';
   if(left<=0){t=clock();mode='playing';$('countdown').hidden=true;
-   if(resuming){for(const n of judge.notes.filter(n=>n.state==='holding'&&!auto)){if(input.held.has(String(n.lane)))comboInput.held.add(String(n.lane));else judge.release(n.lane,t);}resuming=false;}
+   if(resuming){for(const n of judge.notes.filter(n=>n.state==='holding'&&!auto)){if(input.held.has(String(n.lane)))comboInput.held.add(String(n.lane));else if(!touch.held.has(String(n.lane)))judge.release(n.lane,t);}resuming=false;}
   }
  }
  if(mode==='playing'){
@@ -99,9 +108,10 @@ function frame(){
  }
  if(judge){const s=judge.stats;$('combo').textContent=s.combo;$('score').textContent=s.score.toLocaleString('en-US',{minimumIntegerDigits:6});$('accuracy').textContent=s.accuracy.toFixed(1)+'%';$('progress-fill').style.width=`${Math.max(0,Math.min(100,t/currentChart.duration*100))}%`;$('time').textContent=`${formatTime(t)} / ${formatTime(currentChart.duration)}`;$('section').textContent=currentChart.sections?.findLast(s=>s.time*(selection==='practice'?baseChart.bpm/settings.value.bpm:1)<=t)?.label||'OPENING';}
  else{$('section').textContent='MARKET READY';$('combo').textContent='0';$('score').textContent='000,000';$('accuracy').textContent='100.0%';$('progress-fill').style.width='0%';}
- const activeHeld=auto&&judge?new Set(judge.notes.filter(n=>n.state==='holding').map(n=>String(n.lane))):input.held;
+ const activeHeld=auto&&judge?new Set(judge.notes.filter(n=>n.state==='holding').map(n=>String(n.lane))):new Set([...input.held,...touch.held]);
  const preview=[{lane:1,type:'wick',direction:'up',time:1,state:'pending'},{lane:2,type:'hold',direction:'down',time:1.4,duration:0.7,state:'pending'},{lane:3,type:'hold',direction:'up',time:1,duration:0.65,state:'pending'},{lane:4,type:'wick',direction:'down',time:0.6,state:'pending'}];
  renderer.draw(mode==='menu'?0:(mode==='countdown'&&resuming?resumeAt-(settings.value.chartOffset+settings.value.audioOffset)/1000:t),mode==='menu'?preview:judge?.notes||[],activeHeld,settings.value,mode);$('fps').textContent=`${renderer.fps} FPS`;
+ const layout=renderer.layout,controls=$('touch-controls');controls.style.left=`${layout.margin}px`;controls.style.right=`${layout.margin}px`;controls.style.columnGap=`${layout.gap}px`;controls.style.top=`${layout.top}px`;controls.style.bottom=`${renderer.canvas.clientHeight-layout.bottom}px`;
  if(calibration&&audio.context.currentTime>calibration.end)endCalibration();
  requestAnimationFrame(frame);
 }
@@ -133,7 +143,7 @@ $('import-analysis-project').onclick=async()=>{
   await putSong(record);librarySongs=await portfolioSongs();renderLibrary();$('song-dialog').close();await select(record.id);notify('分析工程已加入曲库，预览 Offset 已写入谱面');
  }catch(error){$('song-form-status').textContent=`导入失败：${error.message}`;}
 };
-$('settings-open').onclick=()=>{for(const [k,v]of Object.entries(settings.value))$('settings-form').elements[k].value=v;$('settings-dialog').showModal();};
+$('settings-open').onclick=()=>{for(const [k,v]of Object.entries(settings.value)){const field=$('settings-form').elements.namedItem(k);if(field)field.value=v;}$('settings-dialog').showModal();};
 $('settings-form').onsubmit=e=>{e.preventDefault();settings.save({...settings.value,...Object.fromEntries(new FormData(e.target))});stopCalibration();audio.setVolume(settings.value.volume);$('settings-dialog').close();setSong();notify('设置已保存');};
 $('help-open').onclick=()=>$('help-dialog').showModal();
 for(const button of document.querySelectorAll('[data-close]'))button.onclick=()=>{$(button.dataset.close).close();if(button.dataset.close==='settings-dialog')stopCalibration();};
@@ -141,10 +151,12 @@ for(const id of ['pause-dialog','result-dialog'])$(id).addEventListener('cancel'
 $('settings-dialog').addEventListener('cancel',stopCalibration);
 window.addEventListener('blur',()=>{if(['playing','countdown'].includes(mode))pause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&['playing','countdown'].includes(mode))pause();});
 function stopCalibration(){for(const node of calibration?.nodes||[]){try{node.stop();}catch{}}calibration=null;$('calibrate').disabled=false;}
-async function calibrate(){await audio.init();audio.setVolume(settings.value.volume);$('apply-calibration').hidden=true;const start=audio.context.currentTime+1;calibration={start,end:start+12*0.5,errors:[],used:new Set(),nodes:[]};for(let i=0;i<12;i++)calibration.nodes.push(audio.click(start+i*0.5));$('calibrate').disabled=true;$('calibration-status').textContent='跟随滴声按 F · 0 / 10 次有效采样';}
+async function calibrate(){await audio.init();audio.setVolume(settings.value.volume);$('apply-calibration').hidden=true;const start=audio.context.currentTime+1;calibration={start,end:start+12*0.5,errors:[],used:new Set(),nodes:[]};for(let i=0;i<12;i++)calibration.nodes.push(audio.click(start+i*0.5));$('calibrate').disabled=true;$('calibration-status').textContent='跟随滴声按 F 或点击拍点 · 0 / 10 次有效采样';}
 function endCalibration(){const errors=calibration.errors;stopCalibration();if(errors.length<6){$('calibration-status').textContent='有效采样不足 6 次，请重试。';return;}errors.sort((a,b)=>a-b);const trimmed=errors.slice(1,-1);calibrationSuggestion=Math.max(-300,Math.min(300,Math.round(trimmed.reduce((s,n)=>s+n,0)/trimmed.length)));$('calibration-status').textContent=`建议 Audio Offset ${calibrationSuggestion>=0?'+':''}${calibrationSuggestion} ms · ${errors.length} 次采样（去除最高最低值）`;$('apply-calibration').hidden=false;}
 $('calibrate').onclick=()=>calibrate().catch(e=>notify(e.message));$('apply-calibration').onclick=()=>{$('settings-form').elements.audioOffset.value=calibrationSuggestion;$('calibration-status').textContent='已填入建议值，点击保存设置生效。';};
-window.addEventListener('keydown',e=>{if(!calibration||e.code!=='KeyF'||e.repeat)return;e.preventDefault();const now=audio.context.currentTime,beat=Math.round((now-calibration.start)/0.5),error=(now-calibration.start-beat*0.5)*1000;if(beat<2||beat>11||Math.abs(error)>240||calibration.used.has(beat))return;calibration.used.add(beat);calibration.errors.push(error);$('calibration-status').textContent=`跟随滴声按 F · ${calibration.errors.length} / 10 次有效采样`;});
+function calibrationTap(){if(!calibration)return;const now=audio.context.currentTime,beat=Math.round((now-calibration.start)/0.5),error=(now-calibration.start-beat*0.5)*1000;if(beat<2||beat>11||Math.abs(error)>240||calibration.used.has(beat))return;calibration.used.add(beat);calibration.errors.push(error);$('calibration-status').textContent=`跟随滴声按 F 或点击拍点 · ${calibration.errors.length} / 10 次有效采样`;}
+window.addEventListener('keydown',e=>{if(calibration&&e.code==='KeyF'&&!e.repeat){e.preventDefault();calibrationTap();}});
+$('calibration-tap').addEventListener('pointerdown',e=>{e.preventDefault();calibrationTap();});
 try{baseChart=await charts.load('charts/opening-bell.json');await restoreLegacy();librarySongs=await portfolioSongs();
 try { const [audioResponse,chartResponse]=await Promise.all([fetch('assets/builtin/qingming.m4a'),fetch('assets/builtin/qingming.json')]);
 if(!audioResponse.ok||!chartResponse.ok)throw Error('内置曲目资源无法加载');
@@ -159,3 +171,29 @@ renderLibrary();setSong();await select(librarySongs.some(s=>s.id==='builtin-qing
 
 
 window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===parent&&event.data?.type==='portfolio-pause')pause();});
+
+// Runs in the packaged game's module scope, where mode reflects actual playback.
+let portfolioTouch=null;
+function portfolioCanNavigate(){return ['paused','menu','result'].includes(mode);}
+function portfolioHasScroll(target,direction){
+ for(let el=target instanceof Element?target:null;el&&el!==document.body;el=el.parentElement){
+  if(!/(auto|scroll)/.test(getComputedStyle(el).overflowY)||el.scrollHeight<=el.clientHeight+1)continue;
+  if(direction<0?el.scrollTop>1:el.scrollTop+el.clientHeight<el.scrollHeight-1)return true;
+ }
+ return false;
+}
+function portfolioNavigate(direction){if(parent!==window&&portfolioCanNavigate())parent.postMessage({type:'portfolio-navigate',direction},location.origin);}
+window.addEventListener('wheel',event=>{
+ if(parent===window||!portfolioCanNavigate()||Math.abs(event.deltaY)<30||portfolioHasScroll(event.target,Math.sign(event.deltaY)))return;
+ event.preventDefault();portfolioNavigate(Math.sign(event.deltaY));
+},{passive:false});
+window.addEventListener('touchstart',event=>{portfolioTouch=portfolioCanNavigate()?{y:event.touches[0]?.clientY,up:portfolioHasScroll(event.target,-1),down:portfolioHasScroll(event.target,1)}:null;},{passive:true});
+window.addEventListener('touchend',event=>{if(portfolioTouch===null)return;const start=portfolioTouch,delta=start.y-event.changedTouches[0].clientY;portfolioTouch=null;if(Math.abs(delta)>65&&!(delta>0?start.down:start.up)&&!portfolioHasScroll(event.target,Math.sign(delta)))portfolioNavigate(Math.sign(delta));},{passive:true});
+window.addEventListener('touchcancel',()=>portfolioTouch=null,{passive:true});
+let portfolioDrag=null;
+window.addEventListener('pointerdown',event=>{if(event.pointerType==='mouse'&&event.button===0&&portfolioCanNavigate()&&!event.target.closest('button,a,input,select,textarea'))portfolioDrag={y:event.clientY,target:event.target};});
+window.addEventListener('pointerup',event=>{if(!portfolioDrag)return;const start=portfolioDrag;portfolioDrag=null;const delta=start.y-event.clientY;if(Math.abs(delta)>65&&!portfolioHasScroll(start.target,Math.sign(delta)))portfolioNavigate(Math.sign(delta));});
+window.addEventListener('pointercancel',()=>portfolioDrag=null);
+let portfolioLastMode='';
+function portfolioSync(){if(mode!==portfolioLastMode){portfolioLastMode=mode;parent.postMessage({type:'portfolio-state',canNavigate:portfolioCanNavigate()},location.origin);}requestAnimationFrame(portfolioSync);}
+if(parent!==window)portfolioSync();

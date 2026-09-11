@@ -9,3 +9,9 @@ body>header{pointer-events:none}body>header a,body>header button{pointer-events:
 @media(max-height:600px){.game-heading h1{font-size:18px}.game-heading .eyebrow{display:none}.game-page{padding-top:96px}.game-heading{margin-bottom:6px}.game-foot{display:none}}
 @media(max-width:650px){.game-page{padding-top:80px}.game-heading{gap:6px}.game-actions{width:100%;justify-content:space-between}.game-heading h1{font-size:18px}}
 @media(prefers-reduced-motion:reduce){.connections .flow{animation:none}.page{transition:none}}
+html{height:100%;overflow:clip}body{position:fixed;inset:0;height:100dvh}
+#rift-shell{position:relative;flex:1;min-height:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper)}#rift-frame{width:100%;height:100%;border:0;display:block}#rift-loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);pointer-events:none}#rift-loading[hidden]{display:none}#rift-marker{transform:translate(-65%,-115%)}.game-expanded .game-page:not(.active){visibility:hidden;pointer-events:none}#rift-marker[hidden]{display:none}
+@media(max-width:700px),(pointer:coarse){
+ body:has(.game-page.active)>header,body:has(.game-page.active)>.pagination{display:none}
+ .game-page{padding:10px 10px max(10px,env(safe-area-inset-bottom))}.game-heading{flex-direction:row;align-items:center;gap:4px 8px;margin-bottom:7px}.game-heading .eyebrow,.game-foot{display:none}.game-heading h1{font-size:16px}.game-actions{width:auto;gap:4px}.game-actions a,.game-actions button{font-size:11px;padding:6px 8px;min-height:40px}.game-expanded .game-page{padding:8px}.game-page:fullscreen{padding:8px}
+}

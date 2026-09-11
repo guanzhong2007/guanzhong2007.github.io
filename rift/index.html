@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#102924"><title>裂谷岛 · 生存与进化</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./src/style.css"><link rel="stylesheet" href="portfolio.css"></head>
+<body>
+  <main id="world"><canvas id="map" aria-label="裂谷岛等距地图，拖动平移，滚轮缩放，点击地块交互"></canvas></main>
+  <section id="menu" class="menu-screen">
+    <nav class="menu-nav"><span class="brand-mark">◉</span><span>RIFT ISLAND <small>生存实验 / 01</small></span><span class="version">本地单人原型 · v0.2.0</span></nav>
+    <div class="hero"><div class="eyebrow"><i></i> 一切，从一个细胞开始</div><h1>裂谷岛<span>生存与进化</span></h1><p>在不断变化的岛屿上，长出你的生存之道。<br>探索、进食、适应。每一次进化，都是一个选择。</p><button class="primary large" data-action="guide-start">开始游戏 <span>↗</span></button><button id="continue" class="large" data-action="continue" hidden>继续当前生命 →</button><div class="menu-links"><button data-action="guide">游戏说明</button><button data-action="settings">设置</button><button data-action="about">关于游戏</button></div><div class="hero-note"><span>01 / 原始生命</span><span>没有职业。没有终点。只有下一回合。</span></div></div>
+    <div class="menu-caption"><span class="tag">裂谷岛生态观察站</span><p>22 × 22 地貌样本<br><b>一座岛，无数种适应方式。</b></p></div>
+    <footer class="menu-footer"><span>探索未知 / ADAPT TO SURVIVE</span><span>回合制 · 生物进化 · 环境灾害</span></footer>
+  </section>
+  <section id="hud" hidden data-mode="infinite">
+    <header class="topbar"><button class="brand" data-action="menu">◉ <b>裂谷岛</b><small>RIFT ISLAND</small></button><button id="warning" class="weather" data-action="environment"></button><div class="turn-controls"><button id="speed" data-action="speed" title="切换动画速度">1×</button><div class="turn-label">无限生存 <strong id="turn">01</strong><small>回合</small></div><button id="end-turn" class="primary" data-action="end">结束回合 <span>↵</span></button></div></header>
+    <aside class="player-card panel"><div class="panel-label">YOUR ORGANISM <span class="live-dot"></span></div><button class="player-title" data-action="player"><span class="avatar">◉</span><span id="player-name">原始细胞<small>生命样本 #001</small></span><span id="body-badge" class="badge">Lv.0</span></button><div id="vitals"></div><div id="resources" class="resources"></div><button class="evolve-button" data-action="evolution">✧ 进化 <span id="evolve-hint">塑造下一种可能 →</span></button></aside>
+    <aside id="detail" class="detail panel"></aside>
+    <div class="map-tools"><button data-action="focus" title="回到玩家（F）">⌖</button><button data-action="zoom-in" title="放大">＋</button><button data-action="zoom-out" title="缩小">−</button><button data-action="overview" title="查看全岛">▧</button></div>
+    <div class="map-legend"><span><i style="background:#badc99"></i>可移动</span><span><i style="background:#e6ab80"></i>威胁</span><span><i style="background:#8bd4ee"></i>进化结晶</span></div>
+    <details class="journal panel"><summary>生态记录 · <span id="phase-label">你的回合</span></summary><div id="logs"></div></details>
+    <div id="action-hint" class="action-hint"></div>
+    <footer class="actionbar"><div><span class="keyboard">鼠标</span> 拖动地图 · 滚轮缩放 · 点击查看</div><div class="quick-actions"><button data-action="eat-self">◒ 进食 <small>1 行动</small></button><button data-action="heal">✚ 恢复 <small>1 行动 / 2 生物质</small></button><button data-action="player">⌖ 选择自己</button><button data-action="deselect">取消选择</button></div></footer>
+  </section>
+  <div id="tooltip" role="tooltip" hidden></div><div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="dialog"><div id="dialog-content"></div></dialog>
+  <script type="module" src="./src/app.js"></script>
+</body></html>

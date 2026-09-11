@@ -1,8 +1,9 @@
 export class AudioManager {
  constructor(){this.context=null;this.buffer=null;this.source=null;this.position=0;this.running=false;}
- async init(){if(!this.context){this.context=new AudioContext();this.master=this.context.createGain();this.master.connect(this.context.destination);}await this.context.resume();}
+ ensureContext(){if(!this.context){this.context=new AudioContext();this.master=this.context.createGain();this.master.connect(this.context.destination);}}
+ async init(){this.ensureContext();await this.context.resume();}
  setVolume(value){if(this.master)this.master.gain.setValueAtTime(value,this.context.currentTime);}
- async decode(bytes){await this.init();return this.context.decodeAudioData(bytes);}
+ async decode(bytes){this.ensureContext();return this.context.decodeAudioData(bytes);}
  async synthesize(chart){
   const rate=22050,ctx=new OfflineAudioContext(2,Math.ceil((chart.duration+1)*rate),rate);
   const master=ctx.createGain();master.gain.value=0.55;master.connect(ctx.destination);
