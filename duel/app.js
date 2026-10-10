@@ -41,15 +41,12 @@ function render(){if(!state||draggingCard)return;show('lobby',false);$('roomLabe
   const self=state.players.find(p=>p.id===me.id);$('netWorth').textContent=fmt(self.value);$('cash').textContent=`现金 ${fmt(me.cash)} · 可用 ${fmt(me.available)}`;$('holding').textContent=`${stock.name} ${me.holdings[selectedStock]}股${me.locks[selectedStock]?` · 锁定${me.locks[selectedStock]}股`:''}`;
   const mp=$('myPortrait');mp.dataset.char=me.character;mp.dataset.mood=mood(self.reaction.kind);const reactionKey=`${self.reaction.kind}-${self.reaction.until}`;if(mp.dataset.reactionKey!==reactionKey){mp.className=`my-portrait portrait reaction-${self.reaction.kind}`;mp.dataset.reactionKey=reactionKey;}$('mySpeech').textContent=self.reaction.text;
   syncHTML('opponents',state.players.filter(p=>p.id!==me.id).map(p=>`<div class="opponent ${p.id===selectedTarget?'selected':''} ${p.frozen?'frozen':''} reaction-${p.reaction.kind}" data-target="${p.id}"><div class="portrait" data-char="${p.character}" data-mood="${mood(p.reaction.kind)}"><span class="speech">${esc(p.reaction.text)}</span></div><div class="opponent-info"><strong>${state.characters[p.character].name}</strong><small>${p.bot?'机器人':'真人'} · 手牌${p.handCount}张</small><b>${fmt(p.value)}</b>${p.frozen?`<small class="badge">❄ 冻结 ${Math.ceil(p.freezeRemaining/1000)}s</small>`:p.shield?'<small class="badge">◇ 豁免护盾</small>':''}<button data-scan="${p.id}" ${me.queryRemaining?'disabled':''}>⌕ ${accountSnapshots.has(p.id)?'刷新账户':'查账户'}${me.queryRemaining?` ${Math.ceil(me.queryRemaining/1000)}s`:''}</button></div>${accountHTML(p)}</div>`).join(''));
-  $('handCount').textContent=`${me.hand.length} / 6`;syncHTML('hand',me.hand.length?me.hand.map(c=>cardHTML(c)).join(''):'<div class="empty-hand">暂时没有手牌，下一次选牌快到了。</div>');
+  $('handCount').textContent=`${me.hand.length} / 6`;syncHTML('hand',me.hand.length?me.hand.map(c=>cardHTML(c)).join(''):'<div class="empty-hand">暂时没有手牌，等待下一次自动补牌。</div>');
   syncHTML('attacks',state.attacks.filter(a=>a.target===me.id).map(a=>`<div class="attack"><span>⚠</span><b>${state.cardDefs[a.type].name} · ${state.stocks[a.stock].name}</b><span class="count">${Math.max(0,(a.due-state.now)/1000).toFixed(1)}秒后生效</span><button data-resist="${a.id}" ${me.hand.some(c=>c.type==='exempt')?'':'disabled'}>${me.hand.some(c=>c.type==='exempt')?'抵抗 · 消耗豁免':'没有豁免牌'}</button></div>`).join(''));
   $('marketEffect').textContent=Math.abs(stock.pressure)>.002?`行情受干预 ${stock.pressure>0?'↗':'↘'}`:'';
   syncHTML('logs',state.logs.slice(0,6).map(l=>`<div class="log-entry">${esc(l.text)}</div>`).join(''));
-  show('draftPanel',state.state==='playing');
-  $('draftHint').textContent=me.draft.length?(me.hand.length>=6?`手牌已满 · ${Math.ceil(state.nextDraft/1000)}秒后替换`:`${Math.ceil(state.nextDraft/1000)}秒后替换，未选作废`):`${Math.ceil(state.nextDraft/1000)}秒后下一轮`;
-  syncHTML('draft',me.draft.length?me.draft.map(c=>cardHTML(c,true)).join(''):'<div class="draft-empty">本轮已选，等待下一轮</div>');
-  document.querySelectorAll('#draft [data-pick]').forEach(b=>b.disabled=me.hand.length>=6||!connected);
-  if(state.state==='ended'){show('draftPanel',false);show('ended');syncHTML('results',[...state.players].sort((a,b)=>b.value-a.value).map((p,i)=>`<div class="result-row"><strong>${i+1}</strong>${portrait(p.character,i===0?1:0)}<span>${state.characters[p.character].name}<br><small>${p.id===me.id?'你':p.bot?'机器人':'真人'}</small></span><b>${fmt(p.value)}</b></div>`).join(''));}
+  document.getElementById("dealHint").textContent=me.hand.length>=6?'手牌已满':Math.ceil(state.nextDraft/1000)+'秒后补牌';
+  if(state.state==='ended'){show('ended');syncHTML('results',[...state.players].sort((a,b)=>b.value-a.value).map((p,i)=>`<div class="result-row"><strong>${i+1}</strong>${portrait(p.character,i===0?1:0)}<span>${state.characters[p.character].name}<br><small>${p.id===me.id?'你':p.bot?'机器人':'真人'}</small></span><b>${fmt(p.value)}</b></div>`).join(''));}
   updateEstimate();drawChart();
 }
 $('stocks').onclick=e=>{const b=e.target.closest('[data-stock]');if(b){selectedStock=Number(b.dataset.stock);render();}};
@@ -67,7 +64,6 @@ document.addEventListener('pointerup',e=>{if(!pointerDrag||e.pointerId!==pointer
 document.addEventListener('pointercancel',()=>{pointerDrag=null;dragGhost.classList.add('hidden');endCardDrag();});
 
 document.addEventListener('click',e=>{if(selectedCard&&!playingCard&&!e.target.closest('#hand,#stocks,#opponents,#myPortrait,button,input')){selectedCard=null;if(state)render();}});
-$('draft').onclick=e=>{const b=e.target.closest('[data-pick]');if(b)action({type:'pick',cardId:b.dataset.pick});};
 $('attacks').onclick=e=>{const b=e.target.closest('[data-resist]');if(b)action({type:'resist',attackId:b.dataset.resist});};
 function quantity(){return Number($('quantity').value);}
 function updateEstimate(){if(!state)return;const price=state.stocks[selectedStock].actualPrice;const canBuy=Math.floor(state.me.available/price),canSell=state.me.holdings[selectedStock]-state.me.locks[selectedStock];$('tradeEstimate').textContent=`预计 ${fmt(price*quantity())} · 可买 ${canBuy}股 · 可卖 ${canSell}股`;const busy=trading||!connected||state.state!=='playing';$('buy').disabled=$('sell').disabled=busy;document.querySelectorAll('[data-trade-fraction]').forEach(b=>{const capacity=b.dataset.side==='buy'?state.me.available/price:canSell;b.disabled=busy||Math.floor(capacity*Number(b.dataset.tradeFraction))<1;});}

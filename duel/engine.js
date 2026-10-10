@@ -52,10 +52,10 @@ export class Game {
     if (fillBots) for (let c=0;c<4;c++) if (!this.players.some(p => p.character===c)) this.addPlayer(c,true);
     if (this.players.length < 2) throw new Error('至少两位玩家，或开启机器人补位');
     this.state = 'playing'; this.started = now; this.now = now; this.lastBar = -1; this.lastMarketStep = -1;
-    for (const p of this.players) { p.hand = ['exempt','buy','lift'].map(t=>this.card(t)); this.draw(p); p.nextDraft = now+DRAFT_MS; p.nextBot = now+15000+this.rand()*10000; }
-    this.log('开盘！每40秒三选一；先交易，再找机会出牌。');
+    for (const p of this.players) { p.hand = ['exempt','buy','lift'].map(t=>this.card(t)); p.nextDraft = now+DRAFT_MS; p.nextBot = now+15000+this.rand()*10000; }
+    this.log('开盘！每40秒随机补一张手牌，最多6张；先交易，再找机会出牌。');
   }
-  draw(p) { const shuffled = [...pool]; for(let i=shuffled.length-1;i>0;i--) { const j=Math.floor(this.rand()*(i+1)); [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]; } p.draft = shuffled.slice(0,3).map(t=>this.card(t)); }
+  draw(p) { if(p.hand.length<6) p.hand.push(this.card(pool[Math.floor(this.rand()*pool.length)])); }
   react(p,kind,text) { p.reaction = { kind,text,until:this.now+3500 }; }
   value(p) { return money(p.cash+p.holdings.reduce((sum,n,i)=>sum+n*this.stocks[i].price,0)); }
   available(p) { if(p.freezeUntil>this.now&&p.freezeAll)return 0;return Math.max(0,p.cash-(p.freezeUntil>this.now?p.frozen:0)); }
@@ -86,11 +86,6 @@ export class Game {
         if(quantity<1) throw new Error(a.side==='buy'?'可用现金不足以买入1股':'当前没有足够的可卖持仓');
       }
       return this.trade(p,a.stock,a.side,quantity,a.quote);
-    }
-    if(a.type==='pick') {
-      const c=p.draft.find(c=>c.id===a.cardId); if(!c) throw new Error('这组选牌已经更新');
-      if(p.hand.length>=6) throw new Error('手牌已满，先出牌腾出位置');
-      p.hand.push(c); p.draft=[]; return;
     }
     if(a.type==='scan') {
       if(this.now<p.queryUntil) throw new Error('查账户还有冷却');
@@ -166,7 +161,6 @@ export class Game {
     }
   }
   bot(p) {
-    if(p.draft.length&&p.hand.length<6) { p.hand.push(p.draft[Math.floor(this.rand()*3)]); p.draft=[]; }
     const attack=this.attacks.find(a=>a.target===p.id);
     if(attack&&attack.due-this.now<1000&&p.hand.some(c=>c.type==='exempt')&&this.rand()<.4) { this.action(p.id,{type:'resist',attackId:attack.id}); }
     if(this.now<p.nextBot) return; p.nextBot=this.now+15000+this.rand()*10000;
