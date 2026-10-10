@@ -1,25 +1,29 @@
 import {chartState} from './chart-model.js';
 const accounts={github:'https://github.com/guanzhong2007',google:'mailto:li06314qq@gmail.com'};
-const pages=[...document.querySelectorAll('.page')],names=['about','works','game','rift'];
+const pages=[...document.querySelectorAll('.page')],names=['about','works','game','rift','duel'];
+const duelFrame=document.querySelector('#duel-frame');
 const frame=document.querySelector('#game-frame'),riftFrame=document.querySelector('#rift-frame');let current=0,lastFlip=0,touchY=null,toastTimer,gameCanNavigate=true;
 function notice(text){const el=document.querySelector('#notice');el.textContent=text;el.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.hidden=true,4000);}
 function showPage(){const found=names.indexOf(location.hash.slice(1)),index=found<0?0:found;
  if(current===2&&index!==2)frame.contentWindow?.postMessage({type:'portfolio-pause'},location.origin);
+ duelFrame.contentWindow?.postMessage({type:index===4?'portfolio-resume':'portfolio-pause'},location.origin);
  if(pages[current].contains(document.activeElement))document.activeElement.blur();
  current=index;pages.forEach((p,i)=>{p.classList.toggle('active',i===index);p.inert=i!==index;p.setAttribute('aria-hidden',String(i!==index));});
  document.querySelectorAll('[data-page],[data-nav]').forEach(a=>{const active=Number(a.dataset.page??a.dataset.nav)===index;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
  if(index===2&&!frame.getAttribute('src'))frame.src='game/index.html';
  if(index===3&&!riftFrame.getAttribute('src'))riftFrame.src='rift/index.html';
+ if(index===4&&!duelFrame.getAttribute('src'))duelFrame.src='duel/index.html';
 }
 function flip(delta){if((current===2&&!gameCanNavigate)||Date.now()-lastFlip<900)return;const index=Math.max(0,Math.min(names.length-1,current+delta));if(index!==current){lastFlip=Date.now();location.hash=names[index];}}
 window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==frame.contentWindow)return;if(event.data?.type==='portfolio-state')gameCanNavigate=event.data.canNavigate===true;if(current===2&&event.data?.type==='portfolio-navigate'&&[-1,1].includes(event.data.direction))flip(event.data.direction);});
 window.addEventListener('hashchange',showPage);
-window.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>30){e.preventDefault();flip(Math.sign(e.deltaY));}},{passive:false});
-window.addEventListener('keydown',e=>{if(current===2||e.target.closest?.('button,a,input'))return;if(['ArrowDown','PageDown','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();flip(['ArrowDown','PageDown'].includes(e.key)?1:-1);}});
+window.addEventListener('wheel',e=>{if(current>=2||e.target.closest?.('.work-list'))return;if(Math.abs(e.deltaY)>30){e.preventDefault();flip(Math.sign(e.deltaY));}},{passive:false});
+window.addEventListener('keydown',e=>{if(current>=2||e.target.closest?.('button,a,input'))return;if(['ArrowDown','PageDown','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();flip(['ArrowDown','PageDown'].includes(e.key)?1:-1);}});
 window.addEventListener('touchstart',e=>touchY=e.touches[0]?.clientY,{passive:true});
-window.addEventListener('touchend',e=>{if(touchY!==null){const delta=touchY-e.changedTouches[0].clientY;if(Math.abs(delta)>65)flip(Math.sign(delta));touchY=null;}},{passive:true});
+window.addEventListener('touchend',e=>{if(current>=2||e.target.closest?.('.work-list')||pages[current].scrollHeight>pages[current].clientHeight){touchY=null;return;}if(touchY!==null){const delta=touchY-e.changedTouches[0].clientY;if(Math.abs(delta)>65)flip(Math.sign(delta));touchY=null;}},{passive:true});
 document.querySelectorAll('[data-account]').forEach(b=>b.onclick=()=>{const url=accounts[b.dataset.account];if(url)window.open(url,'_blank','noopener,noreferrer');else notice('账号链接待补充。');});
 frame.onload=()=>{const loading=document.querySelector('#game-loading');try{if(!frame.contentDocument?.querySelector('#game')){loading.textContent='游戏加载失败，请刷新页面重试。';return;}}catch{}loading.hidden=true;};
+duelFrame.onload=()=>{const loading=document.querySelector('#duel-loading');if(duelFrame.contentDocument?.querySelector('#lobby')){loading.hidden=true;duelFrame.contentWindow.postMessage({type:current===4?'portfolio-resume':'portfolio-pause'},location.origin);}else loading.textContent='游戏加载失败，请独立打开或刷新重试。';};
 const fullButton=document.querySelector('#fullscreen');
 riftFrame.onload=()=>{const loading=document.querySelector('#rift-loading');if(riftFrame.contentDocument?.querySelector('#map'))loading.hidden=true;else loading.textContent='游戏加载失败，请刷新页面重试。';};
 function leaveExpanded(){document.body.classList.remove('game-expanded');document.querySelectorAll('.game-actions button').forEach(button=>button.textContent='全屏游玩 ⛶');}

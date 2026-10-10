@@ -15,3 +15,12 @@ html{height:100%;overflow:clip}body{position:fixed;inset:0;height:100dvh}
  body:has(.game-page.active)>header,body:has(.game-page.active)>.pagination{display:none}
  .game-page{padding:10px 10px max(10px,env(safe-area-inset-bottom))}.game-heading{flex-direction:row;align-items:center;gap:4px 8px;margin-bottom:7px}.game-heading .eyebrow,.game-foot{display:none}.game-heading h1{font-size:16px}.game-actions{width:auto;gap:4px}.game-actions a,.game-actions button{font-size:11px;padding:6px 8px;min-height:40px}.game-expanded .game-page{padding:8px}.game-page:fullscreen{padding:8px}
 }
+
+/* Direct work entries stay visible while the chart unfolds. */
+#works .chart-wrap{bottom:32%}#works .chart-heading{top:14%}
+.work-list{position:absolute;left:6%;right:9%;bottom:15%;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;z-index:3}.work-list a{display:flex;flex-direction:column;gap:5px;background:#faf8f3e8;border:1px solid var(--line);border-radius:12px;padding:16px 20px;transition:border-color .2s,transform .2s}.work-list a:hover{border-color:var(--red);transform:translateY(-3px)}.work-list span{font-size:10px;letter-spacing:2px;color:var(--muted)}.work-list strong{font-weight:500;font-size:18px}.work-list small{font-size:12px;color:var(--muted)}
+#duel-shell{position:relative;flex:1;min-height:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#f5f3ef}#duel-frame{width:100%;height:100%;border:0;display:block}#duel-loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);pointer-events:none}#duel-loading[hidden]{display:none}
+@media(max-width:650px){.work-list{left:6%;right:9%;bottom:15%;gap:7px;grid-template-columns:1fr}.work-list a{padding:9px 12px;gap:1px}.work-list span{display:none}.work-list strong{font-size:15px}.work-list small{font-size:11px}#works .chart-wrap{top:31%;bottom:49%}#works .chart-heading{top:13%}#about{overflow-y:auto}.mindmap{height:auto;min-height:470px;grid-template-rows:auto auto auto;padding-bottom:80px}#about .page-footer{position:relative;left:auto;right:auto;bottom:auto;margin-top:8px}#about{padding-bottom:30px}}
+@media(max-height:650px) and (min-width:651px){.mindmap{height:410px;top:52%}.node{padding:15px}.core .portrait{height:90px;width:90px;font-size:62px}.page-footer{bottom:10px}.work-list{bottom:12%}.work-list a{padding:9px 14px}#works .chart-wrap{bottom:34%}}
+
+@media(min-width:701px) and (pointer:fine){.game-page{padding-top:108px}}
